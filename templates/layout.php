@@ -9,15 +9,16 @@
 </head>
 
 <body>
-    <?php
-if ($page === "login") :?>
-    <?php require_once("pages/$page.php"); else:?>
+
     <div class="panel">
         <header class="panel__header">
-            <h1 class="panel__title">Rachunek</h1>
+            <h1 class="panel__title"><a class="panel__link" href="/?action=userPanel">Rachunek</a></h1>
+            <?php session_start(); if (isset($_SESSION['user'])): $user = $_SESSION['user']; ?>
+            <p class="panel__hello-user"><?php echo "Witaj! $user"?>
+            </p>
+            <?php endif;?>
         </header>
-        <?php require_once("pages/$page.php");?>
-        <?php endif;?>
+        <?php require_once("pages/$page.php")?>
     </div>
 </body>
 

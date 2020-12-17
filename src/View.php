@@ -8,6 +8,10 @@ class View
 {
     public function render(string $page, $data =[]):void
     {
-        require_once("./templates/layout.php");
+        if ($page === "login") {
+            require_once("./templates/pages/login.php");
+        } else {
+            require_once("./templates/layout.php");
+        }
     }
 }

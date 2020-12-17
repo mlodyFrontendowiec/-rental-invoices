@@ -94,6 +94,7 @@
   background-color: #dddddd;
   width: 100%;
   height: 100vh;
+  position: relative;
 }
 
 .panel__header {
@@ -111,7 +112,13 @@
           align-items: center;
 }
 
-.panel__title {
+.panel__link {
+  text-decoration: none;
   color: #54bef3;
+}
+
+.panel__hello-user {
+  position: absolute;
+  right: 20px;
 }
 /*# sourceMappingURL=style.css.map */
