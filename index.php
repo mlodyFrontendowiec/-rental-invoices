@@ -13,4 +13,4 @@ use App\Controller\Controller;
 require_once("src/Utils/debug.php");
 require_once("src/Controller/Controller.php");
 $data = ["get"=>$_GET,"post"=>$_POST];
-(new Controller($data))->showPage();
+new Controller($data);

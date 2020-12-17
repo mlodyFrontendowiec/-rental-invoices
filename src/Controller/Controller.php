@@ -18,6 +18,7 @@ class Controller
         $this->post =$data['post'];
         $this->view = new View();
         $this->model = new Model();
+        $this->showPage();
     }
     public function showPage():void
     {
@@ -26,7 +27,13 @@ class Controller
                 $this->view->render("login");
             break;
             case "validateLogin":
-                echo "ok";
+                $this->model->validateLogin($this->post);
+            break;
+            case "userPanel":
+                $this->view->render("userPanel");
+            break;
+            case "logoutUser":
+                $this->model->logoutUser();
             break;
             default:
                 $this->view->render("login");
@@ -35,3 +42,5 @@ class Controller
         }
     }
 }
+
+//konto1 hasło

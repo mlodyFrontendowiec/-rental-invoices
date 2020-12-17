@@ -8,7 +8,11 @@
 </head>
 
 <body>
+    <?php session_start(); $_SESSION = array(); session_destroy();?>
     <div class="login__wrapper">
+        <?php if (isset($_GET['action']) && $_GET['action'] == 'failLogin'):?>
+        <p class="login__fail">Zły login lub hasło</p>
+        <?php endif?>
         <h1 class="login__header">Logowanie</h1>
         <form class="login__form" action="/?action=validateLogin" method="POST">
             <label class="login__label">

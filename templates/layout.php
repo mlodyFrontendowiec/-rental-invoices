@@ -9,7 +9,16 @@
 </head>
 
 <body>
-<?php require_once("pages/$page.php")?>
+    <?php
+if ($page === "login") :?>
+    <?php require_once("pages/$page.php"); else:?>
+    <div class="panel">
+        <header class="panel__header">
+            <h1 class="panel__title">Rachunek</h1>
+        </header>
+        <?php require_once("pages/$page.php");?>
+        <?php endif;?>
+    </div>
 </body>
 
 </html>
