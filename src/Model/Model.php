@@ -35,6 +35,6 @@ class Model
         session_start();
         $_SESSION = array();
         session_destroy();
-        header("location: /");
+        header("location: /?action=logoutUser");
     }
 }

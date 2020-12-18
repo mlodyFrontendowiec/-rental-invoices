@@ -10,6 +10,7 @@
 
 <body>
     <?php session_start(); $_SESSION = array(); session_destroy();?>
+
     <div class="login__wrapper">
         <?php if (isset($_GET['action']) && $_GET['action'] == 'failLogin'):?>
         <p class="login__fail">Zły login lub hasło</p>
