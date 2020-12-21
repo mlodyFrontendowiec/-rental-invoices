@@ -67,6 +67,7 @@
     transform: translateY(-50%);
     left: 5%;
     top: 5%;
+
     cursor: pointer;
     .hamburger__span {
       display: block;
@@ -114,7 +115,9 @@
     position: absolute;
     left: -30%;
     transition: transform 0.3s;
+    z-index: 1;
     &--active {
+      z-index: 1;
       transform: translateX(100%);
     }
   }
@@ -131,11 +134,107 @@
     font-size: 27px;
   }
 }
-// <aside class="panel__menu">
-//             <nav class="panel__nav">
-//                 <ul class="panel__links-container">
-//                     <li class="panel__link-container"><a class="panel__link" href="/?action=addClient">Dodaj Klienta</a>
-//                     </li>
-//                 </ul>
-//             </nav>
-//         </aside>
+.form {
+  &__client {
+    z-index: -1;
+    width: 50%;
+    border: 2px solid $second;
+    transform: translate(50%, 10%);
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+  }
+  &__title {
+    margin-top: 10%;
+    color: $second;
+  }
+  &__wrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: center;
+    padding: 50px 0;
+  }
+
+  &__label {
+    flex-basis: 100%;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: $second;
+  }
+  &__input {
+    font-size: 20px;
+    margin: 0 10px;
+    padding: 10px;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid $primary;
+    transition: 0.3s;
+    flex-grow: 1;
+    max-width: 220px;
+    &:focus {
+      border-bottom: 2px solid $second;
+    }
+  }
+  &__submit {
+    font-size: 15px;
+    padding: 8px 15px;
+    background-color: white;
+    border: 2px solid $primary;
+    cursor: pointer;
+    color: $second;
+    margin-top: 10px;
+    outline: none;
+    transition: 0.3s;
+    &:hover {
+      border: 2px solid $second;
+    }
+  }
+}
+.client {
+  &__wrapper {
+    width: 90%;
+    background-color: yellow;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 30px;
+  }
+  &__section {
+    flex-basis: 30%;
+    height: 200px;
+    border: 2px solid $second;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+  }
+  &__title {
+    margin-top: 10px;
+  }
+}
+// <div class="client__wrapper">
+//     <?php
+// if (isset($_SESSION['acces']) && $_SESSION['acces'] === 1):?>
+//     <?php foreach ($data as $key => $value):?>
+//     <section class="client__section">
+//         <h1 class="client__title"><?php echo $value[1]?>
+//         </h1>
+//         <p class="client__description"><?php echo $value[2]?>
+//         </p>
+//         <p class="client__price"><?php echo $value[3]?>
+//         </p>
+//     </section>
+//     <?php endforeach;?>
+
+//     <?php else:?>
+//     <h1 class="panel__fail">Brak autoryzacji</h1>
+//     <?php endif;?>
+// </div>

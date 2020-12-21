@@ -30,10 +30,17 @@ class Controller
                 $this->model->validateLogin($this->post);
             break;
             case "userPanel":
-                $this->view->render("userPanel");
+                $clients = $this->model->getClients();
+                $this->view->render("userPanel", $clients);
+            break;
+            case "createClient":
+                $this->view->render("createClient");
             break;
             case "logoutUser":
                 $this->model->logoutUser();
+            break;
+            case "addUser":
+                $this->model->addUser($this->post);
             break;
             default:
                 $this->view->render("login");

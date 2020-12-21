@@ -10,7 +10,7 @@ class Model
     {
         $this->mysqli = mysqli_connect("localhost", "user_rachunek", "tPqj5iofaALXQKrC", "rachunek");
     }
-    public function validateLogin(array $POST)
+    public function validateLogin(array $POST):void
     {
         session_start();
         $password = $POST["password"];
@@ -36,5 +36,19 @@ class Model
         $_SESSION = array();
         session_destroy();
         header("location: /?action=logoutUser");
+    }
+    public function addUser(array $POST):void
+    {
+        $name = $POST['name'];
+        $flat = $POST['flat'];
+        $price = $POST['price'];
+        $res = mysqli_query($this->mysqli, "INSERT INTO clients(name,flat,price) VALUES ('$name','$flat','$price')");
+        header("Location: /?action=userPanel");
+    }
+    public function getClients()
+    {
+        $res = mysqli_query($this->mysqli, "SELECT * FROM clients");
+        $rows = mysqli_fetch_all($res);
+        return $rows;
     }
 }

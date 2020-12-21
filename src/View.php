@@ -6,7 +6,7 @@ namespace App;
 
 class View
 {
-    public function render(string $page, $data =[]):void
+    public function render(string $page, $data = []):void
     {
         if ($page === "login") {
             require_once("./templates/pages/login.php");

@@ -26,7 +26,8 @@
         <aside class="panel__menu">
             <nav class="panel__nav">
                 <ul class="panel__links-container">
-                    <li class="panel__link-container"><a class="panel__link" href="/?action=addClient">Dodaj Klienta</a>
+                    <li class="panel__link-container"><a class="panel__link" href="/?action=createClient">Dodaj
+                            Klienta</a>
                     </li>
                     <li class="panel__link-container"><a class="panel__link" href="/?action=logoutUser">Wyloguj</a>
                     </li>
