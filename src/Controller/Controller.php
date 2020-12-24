@@ -42,6 +42,10 @@ class Controller
             case "addUser":
                 $this->model->addUser($this->post);
             break;
+            case "detailsClient":
+                $client = $this->model->detailsClient($this->get);
+                $this->view->render("detailsClient", $client);
+            break;
             default:
                 $this->view->render("login");
             break;

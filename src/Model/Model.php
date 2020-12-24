@@ -35,7 +35,7 @@ class Model
         session_start();
         $_SESSION = array();
         session_destroy();
-        header("location: /?action=logoutUser");
+        header("location: /");
     }
     public function addUser(array $POST):void
     {
@@ -45,10 +45,17 @@ class Model
         $res = mysqli_query($this->mysqli, "INSERT INTO clients(name,flat,price) VALUES ('$name','$flat','$price')");
         header("Location: /?action=userPanel");
     }
-    public function getClients()
+    public function getClients():array
     {
         $res = mysqli_query($this->mysqli, "SELECT * FROM clients");
         $rows = mysqli_fetch_all($res);
         return $rows;
+    }
+    public function detailsClient(array $GET)
+    {
+        $id = $GET['id'];
+        $res = mysqli_query($this->mysqli, "SELECT * FROM clients  WHERE id = '$id' ");
+        $row = mysqli_fetch_assoc($res);
+        return $row;
     }
 }

@@ -1,0 +1,55 @@
+.login {
+  &__wrapper {
+    color: $second;
+    width: 50%;
+    height: 35vh;
+    border: 2px solid $primary;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    transform: translate(50%, 50%);
+  }
+  &__header {
+    text-align: center;
+    margin-top: 10px;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  &__label {
+    display: flex;
+    padding: 15px;
+    font-size: 20px;
+  }
+  &__input {
+    margin-left: 10px;
+    padding: 5px 10px;
+    font-size: 18px;
+    border: none;
+    border-bottom: 2px solid $primary;
+    outline: none;
+    &:focus {
+      border-bottom: 2px solid $second;
+    }
+  }
+  &__submit {
+    padding: 5px 12px;
+    color: $second;
+    font-size: 15px;
+    background-color: white;
+    border: 2px solid $second;
+    cursor: pointer;
+    &:hover {
+      color: white;
+      background-color: $second;
+    }
+  }
+  &__fail {
+    color: red;
+    text-align: center;
+    margin-top: 30px;
+  }
+}

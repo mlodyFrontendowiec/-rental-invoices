@@ -1,0 +1,77 @@
+.panel {
+  background-color: $primary;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  .hamburger {
+    position: absolute;
+    transform: translateY(-50%);
+    left: 5%;
+    top: 5%;
+
+    cursor: pointer;
+    .hamburger__span {
+      display: block;
+      width: 40px;
+      height: 7px;
+      background-color: white;
+      margin-bottom: 5px;
+      border-radius: 9px;
+      top: 20px;
+      cursor: pointer;
+      &--active {
+        background-color: $primary;
+      }
+    }
+  }
+  &__header {
+    text-align: center;
+    height: 10vh;
+    background-color: $third;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__link-logo {
+    text-decoration: none;
+    color: $second;
+  }
+  &__hello-user {
+    position: absolute;
+    right: 20px;
+    color: $second;
+  }
+  &__fail {
+    color: red;
+    position: absolute;
+    top: 20%;
+  }
+  &__menu {
+    width: 30%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    background-color: $second;
+    justify-content: center;
+    position: absolute;
+    left: -30%;
+    transition: transform 0.3s;
+    z-index: 1;
+    &--active {
+      z-index: 1;
+      transform: translateX(100%);
+    }
+  }
+  &__links-container {
+    list-style: none;
+    margin-bottom: 100px;
+  }
+  &__link-container {
+    padding: 15px 0;
+  }
+  &__link {
+    text-decoration: none;
+    color: $primary;
+    font-size: 27px;
+  }
+}
