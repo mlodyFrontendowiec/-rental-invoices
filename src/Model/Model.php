@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+
 namespace App\Model;
 
 class Model
@@ -51,11 +52,19 @@ class Model
         $rows = mysqli_fetch_all($res);
         return $rows;
     }
-    public function detailsClient(array $GET)
+    public function detailsClient(array $GET):array
     {
         $id = $GET['id'];
         $res = mysqli_query($this->mysqli, "SELECT * FROM clients  WHERE id = '$id' ");
         $row = mysqli_fetch_assoc($res);
         return $row;
+    }
+    public function createPdf(array $row):void
+    {
+        require_once "C:/rachunek - php/vendor/autoload.php" ;
+        $mpdf = new \Mpdf\Mpdf();
+        dump($row);
+        $mpdf->WriteHTML("<h1>$row[name]<h1/>");
+        $mpdf->Output("$row[name].pdf", "D");
     }
 }

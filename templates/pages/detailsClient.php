@@ -6,7 +6,8 @@
     </h2>
     <h2 class="details__price">Opłata:<?php echo $data["price"]?> zł
     </h2>
-
+    <a
+        href="/?action=createPdf&id=<?php echo $data['id']?>">Pobierz</a>
 
 </section>
 <?php else:?>

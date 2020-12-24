@@ -46,6 +46,10 @@ class Controller
                 $client = $this->model->detailsClient($this->get);
                 $this->view->render("detailsClient", $client);
             break;
+            case "createPdf":
+                $client = $this->model->detailsClient($this->get);
+                $this->model->createPdf($client);
+            break;
             default:
                 $this->view->render("login");
             break;
