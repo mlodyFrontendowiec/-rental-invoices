@@ -29,6 +29,8 @@
                     <li class="panel__link-container"><a class="panel__link" href="/?action=createClient">Dodaj
                             Klienta</a>
                     </li>
+                    <li class="panel__link-container"><a class="panel__link" href="/?action=allClients">Klienci</a>
+                    </li>
                     <li class="panel__link-container"><a class="panel__link" href="/?action=logoutUser">Wyloguj</a>
                     </li>
                 </ul>

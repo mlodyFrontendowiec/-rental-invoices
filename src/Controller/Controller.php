@@ -42,13 +42,21 @@ class Controller
             case "addUser":
                 $this->model->addUser($this->post);
             break;
-            case "detailsClient":
-                $client = $this->model->detailsClient($this->get);
-                $this->view->render("detailsClient", $client);
+            case "allClients":
+               $clients =  $this->model->getClients();
+                $this->view->render("allClients", $clients);
             break;
-            case "createPdf":
-                $client = $this->model->detailsClient($this->get);
-                $this->model->createPdf($client);
+            case "deleteUser":
+                $this->model->deleteUser($this->get);
+            break;
+            case "editClient":
+                if ($_SERVER['REQUEST_METHOD']== 'GET') {
+                    $client = $this->model->getClient($this->get);
+                    $this->view->render("editClient", $client);
+                }
+                if ($_SERVER['REQUEST_METHOD']== 'POST') {
+                    $this->model->editClient($this->post, $this->get);
+                }
             break;
             default:
                 $this->view->render("login");

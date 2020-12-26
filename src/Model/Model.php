@@ -38,33 +38,57 @@ class Model
         session_destroy();
         header("location: /");
     }
+    
     public function addUser(array $POST):void
     {
+        dump($POST);
         $name = $POST['name'];
-        $flat = $POST['flat'];
-        $price = $POST['price'];
-        $res = mysqli_query($this->mysqli, "INSERT INTO clients(name,flat,price) VALUES ('$name','$flat','$price')");
-        header("Location: /?action=userPanel");
+        $surname = $POST['surname'];
+        $address = $POST['address'];
+        $code = $POST['code'];
+        $city=$POST['city'];
+        $res = mysqli_query($this->mysqli, "INSERT INTO clients(name,surname,address,code,city) VALUES('$name','$surname','$address','$code','$city')");
+        header("location: /?action=userPanel");
     }
     public function getClients():array
     {
         $res = mysqli_query($this->mysqli, "SELECT * FROM clients");
-        $rows = mysqli_fetch_all($res);
-        return $rows;
+        $rows = mysqli_fetch_all($res, MYSQLI_ASSOC);
+        return $rows ?? [];
     }
-    public function detailsClient(array $GET):array
+    public function getClient(array $GET):array
     {
         $id = $GET['id'];
-        $res = mysqli_query($this->mysqli, "SELECT * FROM clients  WHERE id = '$id' ");
+        $res = mysqli_query($this->mysqli, "SELECT * FROM clients WHERE id=$id");
         $row = mysqli_fetch_assoc($res);
-        return $row;
+        return $row ?? [];
+    }
+    public function deleteUser(array $GET)
+    {
+        $id = $GET['id'];
+        mysqli_query($this->mysqli, "DELETE FROM clients WHERE id=$id");
+        header("location: /?action=allClients");
+    }
+    public function editClient($POST, $GET)
+    {
+        $id = $GET['id'];
+        $name = $POST['name'];
+        $surname = $POST['surname'];
+        $address = $POST['address'];
+        $code = $POST['code'];
+        $city=$POST['city'];
+        $res = mysqli_query($this->mysqli, "UPDATE clients SET name='$name',surname='$surname',address='$address',code='$code',city='$city' WHERE id=$id");
+        header("location: /?action=allClients");
     }
     public function createPdf(array $row):void
     {
+        $name = $row['name'];
         require_once "C:/rachunek - php/vendor/autoload.php" ;
+        $stylesheet = file_get_contents("C:/rachunek - php/style/css/pdf.css");
+        $html = "<h1 class='pdf'>$name</h1>";
         $mpdf = new \Mpdf\Mpdf();
-        dump($row);
-        $mpdf->WriteHTML("<h1>$row[name]<h1/>");
-        $mpdf->Output("$row[name].pdf", "D");
+        $mpdf->WriteHTML($stylesheet, \Mpdf\HTMLParserMode::HEADER_CSS);
+        $mpdf->WriteHTML($html, \Mpdf\HTMLParserMode::HTML_BODY);
+        $mpdf->Output("$name.pdf", "D");
     }
 }

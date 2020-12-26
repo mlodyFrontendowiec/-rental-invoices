@@ -97,10 +97,11 @@ body {
 .details {
   width: 80%;
   background-color: white;
-  height: 30%;
+  height: 20%;
   border: 2px solid #54bef3;
   margin: 0 auto;
   margin-top: 20px;
+  position: relative;
 }
 
 .details__title {
@@ -110,16 +111,53 @@ body {
   color: #54bef3;
 }
 
-.details__flat {
+.details__address {
   color: #54bef3;
+  margin-top: 10px;
   text-align: center;
-  margin-top: 7px;
 }
 
-.details__price {
-  color: green;
+.details__address-wrapper {
+  position: absolute;
+  right: 15px;
+  bottom: 20px;
+}
+
+.details__delete {
+  text-decoration: none;
+  color: #54bef3;
+  font-size: 14px;
+  padding: 7px 14px;
+  border: 2px solid #dddddd;
+  font-weight: bold;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.details__delete:hover {
+  border: 2px solid #54bef3;
+}
+
+.details__edit {
+  text-decoration: none;
+  color: #54bef3;
+  font-size: 14px;
+  padding: 7px 14px;
+  border: 2px solid #dddddd;
+  font-weight: bold;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.details__edit:hover {
+  border: 2px solid #54bef3;
+}
+
+.details__info {
+  width: 100%;
+  margin-top: 20px;
+  color: red;
   text-align: center;
-  margin-top: 7px;
 }
 
 .panel {
@@ -232,9 +270,9 @@ body {
   z-index: -1;
   width: 50%;
   border: 2px solid #54bef3;
-  -webkit-transform: translate(50%, 10%);
-          transform: translate(50%, 10%);
-  height: 50%;
+  -webkit-transform: translate(50%, 5%);
+          transform: translate(50%, 5%);
+  height: 70%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -249,7 +287,7 @@ body {
 }
 
 .form__title {
-  margin-top: 10%;
+  margin-top: 5%;
   color: #54bef3;
 }
 
@@ -319,76 +357,69 @@ body {
   border: 2px solid #54bef3;
 }
 
-.client__wrapper {
-  width: 90%;
-  height: auto;
-  margin: 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -ms-flex-line-pack: justify;
-      align-content: space-between;
-  margin-top: 20px;
-}
-
-.client__section {
-  -ms-flex-preferred-size: 30%;
-      flex-basis: 30%;
-  height: 200px;
-  border: 2px solid #54bef3;
-  background-color: transparent;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  color: black;
-  -webkit-transform: scale(1);
-          transform: scale(1);
-  -webkit-transition: -webkit-transform 0.3s;
-  transition: -webkit-transform 0.3s;
-  transition: transform 0.3s;
-  transition: transform 0.3s, -webkit-transform 0.3s;
+.client {
+  width: 80%;
   background-color: white;
-  margin: 10px;
-}
-
-.client__section:hover {
-  -webkit-transform: scale(1.2);
-          transform: scale(1.2);
-  z-index: 1;
+  height: 20%;
+  border: 2px solid #54bef3;
+  margin: 0 auto;
+  margin-top: 20px;
+  position: relative;
 }
 
 .client__title {
+  text-align: center;
+  font-size: 30px;
   margin-top: 10px;
+  color: #54bef3;
 }
 
-.client__description {
-  margin-top: 20px;
+.client__address {
+  color: #54bef3;
+  margin-top: 10px;
+  text-align: center;
 }
 
-.client__details {
+.client__address-wrapper {
+  position: absolute;
+  right: 15px;
+  bottom: 20px;
+}
+
+.client__delete {
   text-decoration: none;
   color: #54bef3;
-  border: 2px solid #54bef3;
-  padding: 8px 15px;
-  margin-top: 20px;
+  font-size: 14px;
+  padding: 7px 14px;
+  border: 2px solid #dddddd;
+  font-weight: bold;
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-.client__details:hover {
-  background-color: #54bef3;
-  color: white;
+.client__delete:hover {
+  border: 2px solid #54bef3;
+}
+
+.client__edit {
+  text-decoration: none;
+  color: #54bef3;
+  font-size: 14px;
+  padding: 7px 14px;
+  border: 2px solid #dddddd;
+  font-weight: bold;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.client__edit:hover {
+  border: 2px solid #54bef3;
+}
+
+.client__info {
+  width: 100%;
+  margin-top: 20px;
+  color: red;
+  text-align: center;
 }
 /*# sourceMappingURL=style.css.map */
