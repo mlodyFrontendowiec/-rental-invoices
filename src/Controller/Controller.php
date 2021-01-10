@@ -95,7 +95,8 @@ class Controller
                 }
             break;
             case "downloadFile":
-                
+
+                $this->model->createPdf($this->get);
             break;
             default:
                 $this->view->render("login");

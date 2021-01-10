@@ -158,25 +158,53 @@ class Model
     public function getClientById($id)
     {
         $res = mysqli_query($this->mysqli, "SELECT * FROM clients WHERE id = $id");
-        $row = mysqli_fetch_row($res);
+        $row = mysqli_fetch_assoc($res);
         return $row;
     }
     public function getServiceById($id)
     {
         $res = mysqli_query($this->mysqli, "SELECT * FROM services WHERE id = $id");
-        $row = mysqli_fetch_row($res);
+        $row = mysqli_fetch_assoc($res);
         return $row;
     }
     
-    public function createPdf(array $row):void
+    public function createPdf(array $GET):void
     {
-        $name = $row['name'];
-        require_once "C:/rachunek - php/vendor/autoload.php" ;
+        $clientId = $GET["user"];
+        $serviceId = $GET["service"];
+
+
+        $client = $this->getClientById($clientId);
+        $service = $this->getServiceById($serviceId);
+        dump($client);
+        dump($service);
+        
+        $id = $client['id'];
+        $name = $client['name'];
+        $surname = $client['surname'];
+        $address = $client['address'];
+        $code = $client['code'];
+        $city = $client['city'];
+
+        $idServie = $service['id'];
+        $serviceName = $service['name'];
+        $unit = $service['unit'];
+        $price = $service['price'];
+        $today =  date("d/y");
+        dump("$id/".$today);
+
+        
+
+
+        require_once  './vendor/autoload.php';
         $stylesheet = file_get_contents("C:/rachunek - php/style/css/pdf.css");
-        $html = "<h1 class='pdf'>$name</h1>";
-        $mpdf = new \Mpdf\Mpdf();
+        $html = "<p>Rachunek nr $id/$today<p>";
+        $mpdf = new \Mpdf\Mpdf([[
+            'autoMarginPadding' => 0
+        ]]);
         $mpdf->WriteHTML($stylesheet, \Mpdf\HTMLParserMode::HEADER_CSS);
         $mpdf->WriteHTML($html, \Mpdf\HTMLParserMode::HTML_BODY);
-        $mpdf->Output("$name.pdf", "D");
+        $mpdf->Output();
+        // "$name.pdf", "D"
     }
 }
