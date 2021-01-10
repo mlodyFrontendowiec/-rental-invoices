@@ -15,13 +15,14 @@ if (isset($_SESSION['acces']) && $_SESSION['acces'] === 1):?>
             Adres: <input class="form__input" required name="address" type="text" value=<?php echo $data['address']?>/>
         </labal>
         <label class="form__label">
-            Kod pocztowy: <input class="form__input" required name="code" type="text" value=<?php echo $data['code']?> />
+            Kod pocztowy:<input class="form__input" required name="code" type="text" value=<?php echo $data['code']?> />
         </label>
         <label class="form__label">
             Miasto: <input class="form__input" required name="city" type="text" value=<?php echo $data['city']?> />
         </label>
-        <button type="submit" class="form__submit">Edytuj</button>
+
     </div>
+    <button type="submit" class="form__submit">Edytuj</button>
 </form>
 <?php else:?>
 <h1 class="panel__fail">Brak autoryzacji</h1>

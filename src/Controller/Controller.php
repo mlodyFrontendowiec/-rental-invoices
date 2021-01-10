@@ -30,8 +30,14 @@ class Controller
                 $this->model->validateLogin($this->post);
             break;
             case "userPanel":
-                $clients = $this->model->getClients();
-                $this->view->render("userPanel", $clients);
+               $rows = $this->model->getBills();
+               
+                $data = $this->model->getBillsData($rows);
+                
+               $dataBills =  $this->model->getBillsAndUsers($data);
+          
+
+                $this->view->render("userPanel", $dataBills);
             break;
             case "createClient":
                 $this->view->render("createClient");
@@ -39,8 +45,8 @@ class Controller
             case "logoutUser":
                 $this->model->logoutUser();
             break;
-            case "addUser":
-                $this->model->addUser($this->post);
+            case "addClient":
+                $this->model->addClient($this->post);
             break;
             case "allClients":
                $clients =  $this->model->getClients();
@@ -48,6 +54,9 @@ class Controller
             break;
             case "deleteUser":
                 $this->model->deleteUser($this->get);
+            break;
+            case "deleteService":
+                $this->model->deleteService($this->get);
             break;
             case "editClient":
                 if ($_SERVER['REQUEST_METHOD']== 'GET') {
@@ -57,6 +66,36 @@ class Controller
                 if ($_SERVER['REQUEST_METHOD']== 'POST') {
                     $this->model->editClient($this->post, $this->get);
                 }
+            break;
+            case "editService":
+                if ($_SERVER['REQUEST_METHOD']== 'GET') {
+                    $service = $this->model->getService($this->get);
+                    $this->view->render("editService", $service);
+                } elseif ($_SERVER['REQUEST_METHOD']== 'POST') {
+                    $this->model->editService($this->post, $this->get);
+                }
+            break;
+            case "createService":
+                $this->view->render("createService");
+                if ($_SERVER['REQUEST_METHOD']== 'POST') {
+                    $this->model->createService($this->post);
+                }
+            break;
+            case "allServices":
+                $services =  $this->model->getServices();
+                $this->view->render("allServices", $services);
+            break;
+            case "createBill":
+                if ($_SERVER['REQUEST_METHOD']== 'GET') {
+                    $clients = $this->model->getClients();
+                    $services = $this->model->getServices();
+                    $this->view->render("createBill", ["clients"=>$clients,'services'=>$services]);
+                } elseif ($_SERVER['REQUEST_METHOD']== 'POST') {
+                    $this->model->createBill($this->post);
+                }
+            break;
+            case "downloadFile":
+                
             break;
             default:
                 $this->view->render("login");

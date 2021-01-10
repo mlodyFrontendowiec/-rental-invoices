@@ -1,6 +1,6 @@
 <?php
 if (isset($_SESSION['acces']) && $_SESSION['acces'] === 1):?>
-<form class="form__client" action="/?action=addUser" method="POST">
+<form class="form__client" action="/?action=addClient" method="POST">
     <h1 class="form__title">Dodaj klienta</h1>
     <div class="form__wrapper">
         <label class="form__label">
@@ -18,8 +18,9 @@ if (isset($_SESSION['acces']) && $_SESSION['acces'] === 1):?>
         <label class="form__label">
             Miasto: <input class="form__input" required name="city" type="text" />
         </label>
-        <button type="submit" class="form__submit">Dodaj</button>
+
     </div>
+    <button type="submit" class="form__submit">Dodaj</button>
 </form>
 <?php else:?>
 <h1 class="panel__fail">Brak autoryzacji</h1>

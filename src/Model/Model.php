@@ -5,6 +5,8 @@ declare(strict_types=1);
 
 namespace App\Model;
 
+use stdClass;
+
 class Model
 {
     public function __construct()
@@ -39,9 +41,8 @@ class Model
         header("location: /");
     }
     
-    public function addUser(array $POST):void
+    public function addClient(array $POST):void
     {
-        dump($POST);
         $name = $POST['name'];
         $surname = $POST['surname'];
         $address = $POST['address'];
@@ -56,10 +57,23 @@ class Model
         $rows = mysqli_fetch_all($res, MYSQLI_ASSOC);
         return $rows ?? [];
     }
+    public function getServices():array
+    {
+        $res = mysqli_query($this->mysqli, "SELECT * FROM services");
+        $rows = mysqli_fetch_all($res, MYSQLI_ASSOC);
+        return $rows ?? [];
+    }
     public function getClient(array $GET):array
     {
         $id = $GET['id'];
         $res = mysqli_query($this->mysqli, "SELECT * FROM clients WHERE id=$id");
+        $row = mysqli_fetch_assoc($res);
+        return $row ?? [];
+    }
+    public function getService(array $GET):array
+    {
+        $id = $GET['id'];
+        $res = mysqli_query($this->mysqli, "SELECT * FROM services WHERE id=$id");
         $row = mysqli_fetch_assoc($res);
         return $row ?? [];
     }
@@ -68,6 +82,12 @@ class Model
         $id = $GET['id'];
         mysqli_query($this->mysqli, "DELETE FROM clients WHERE id=$id");
         header("location: /?action=allClients");
+    }
+    public function deleteService(array $GET)
+    {
+        $id = $GET['id'];
+        mysqli_query($this->mysqli, "DELETE FROM services WHERE id=$id");
+        header("location: /?action=allServices");
     }
     public function editClient($POST, $GET)
     {
@@ -80,6 +100,74 @@ class Model
         $res = mysqli_query($this->mysqli, "UPDATE clients SET name='$name',surname='$surname',address='$address',code='$code',city='$city' WHERE id=$id");
         header("location: /?action=allClients");
     }
+    public function editService(array $POST, array $GET)
+    {
+        $id = $GET['id'];
+        $name = $POST['name'];
+        $sign = $POST['sign'];
+        $price = $POST['price'];
+        $unit = $POST['unit'];
+        $res = mysqli_query($this->mysqli, "UPDATE services SET name='$name',sign='$sign',price='$price',unit='$unit' WHERE id=$id");
+        header("location: /?action=allServices");
+    }
+    public function createService(array $POST)
+    {
+        $sign = $POST['sign'];
+        $name = $POST['name'];
+        $unit = $POST['unit'];
+        $price = $POST['price'];
+        
+        $res = mysqli_query($this->mysqli, "INSERT INTO services(sign,name,unit,price) VALUES('$sign','$name','$unit','$price')");
+        header("location: /?action=allServices");
+    }
+    public function createBill(array $POST):void
+    {
+        $clientId = $POST['recipient'];
+        $serviceId =$POST['service'];
+        mysqli_query($this->mysqli, "INSERT INTO bills(clientId,serviceId) VALUES('$clientId','$serviceId')");
+        header("location: /");
+    }
+    public function getBills():array
+    {
+        $res = mysqli_query($this->mysqli, "SELECT * FROM bills");
+        $rows = mysqli_fetch_all($res, MYSQLI_ASSOC);
+        return $rows ?? [];
+    }
+    public function getBillsData($rows)
+    {
+        $data = [];
+        
+        foreach ($rows as $row) {
+            array_push($data, ["clientId"=>$row['clientId'],"serviceId"=>$row["serviceId"]]);
+        }
+        
+        return $data;
+    }
+    public function getBillsAndUsers($data)
+    {
+        $bills = [];
+        foreach ($data as $row) {
+            $clientId = $row['clientId'];
+            $serviceId = $row['serviceId'];
+            $client = $this->getClientById($clientId);
+            $service =  $this->getServiceById($serviceId);
+            array_push($bills, [$client,$service]);
+        }
+        return $bills;
+    }
+    public function getClientById($id)
+    {
+        $res = mysqli_query($this->mysqli, "SELECT * FROM clients WHERE id = $id");
+        $row = mysqli_fetch_row($res);
+        return $row;
+    }
+    public function getServiceById($id)
+    {
+        $res = mysqli_query($this->mysqli, "SELECT * FROM services WHERE id = $id");
+        $row = mysqli_fetch_row($res);
+        return $row;
+    }
+    
     public function createPdf(array $row):void
     {
         $name = $row['name'];
